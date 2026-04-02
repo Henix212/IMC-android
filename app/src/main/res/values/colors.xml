@@ -26,4 +26,9 @@
     <color name="status_normal">#4CAF50</color>
     <color name="status_warning">#FFC107</color>
     <color name="status_danger">#F44336</color>
+
+    <!-- Couleurs grandient background-->
+    <color name="gradient_start_dark">#2C3E50</color>
+    <color name="gradient_end_teal">#00796B</color>
+
 </resources>
