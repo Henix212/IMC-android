@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Couleurs principales -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="primary_teal">#008577</color> 
+    <color name="primary_light">#4ebaaa</color>
+    <color name="primary_dark">#00574b</color>
+
+    <color name="accent_orange">#FF8F00</color>
+    
+    <!-- Couleurs light mode -->
+    <color name="background_light">#F8F9FA</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="text_main_light">#212121</color>
+    <color name="text_secondary_light">#757575</color>
+
+    <!-- Couleurs dark mode -->
+    <color name="background_dark">#121212</color>
+    <color name="surface_dark">#1E1E1E</color>
+    <color name="text_main_dark">#E1E1E1</color>
+    <color name="text_secondary_dark">#B0B0B0</color>
+
+    <!-- Couleurs for errors messages -->
+    <color name="status_normal">#4CAF50</color>
+    <color name="status_warning">#FFC107</color>
+    <color name="status_danger">#F44336</color>
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">IMC</string>
+
+    <string name="label_signin">Veuillez créer votre compte</string>
+    <string name="label_login">Veuillez vous connecter à votre compte</string>
+
+    <string name="label_nom">Nom :</string>
+    <string name="label_prenom">Prénom :</string>
+    <string name="label_mdp">Mot de passe :</string>
+</resources>
