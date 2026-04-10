@@ -115,11 +115,6 @@
                 android:textSize="18sp"
                 android:autofillHints="password"
                 tools:ignore="LabelFor" />
-
-            <ImageButton
-                android:layout_width=""
-                android:layout_height="" />
-
         </LinearLayout>
 
         <Button
