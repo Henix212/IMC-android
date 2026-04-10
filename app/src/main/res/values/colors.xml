@@ -31,4 +31,7 @@
     <color name="gradient_start_dark">#2C3E50</color>
     <color name="gradient_end_teal">#00796B</color>
 
+    <!-- Couleurs pour des fonds transparant -->
+    <color name="transparent_gray">#4DFFFFFF</color>
+
 </resources>

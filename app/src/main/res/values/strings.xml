@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">IMC</string>
+    <string name="app_name">IMC Calculator</string>
 
     <string name="label_signin">Veuillez créer votre compte</string>
     <string name="label_login">Veuillez vous connecter à votre compte</string>
 
-    <string name="label_nom">Nom :</string>
-    <string name="label_prenom">Prénom :</string>
-    <string name="label_mdp">Mot de passe :</string>
+    <string name="label_username">Username :</string>
+    <string name="label_mdp">Password :</string>
+
+    <string name="label_login_btn">Login</string>
+
+    <string name="login_img_description">Icone pour le login</string>
 </resources>
