@@ -8,6 +8,32 @@
     <string name="label_mdp">Password :</string>
 
     <string name="label_login_btn">Login</string>
+    <string name="label_register_btn">Sign In</string>
+
+    <string name="registered">Already registered? Login here !</string>
+    <string name="not_registered">Not Registered, create account !</string>
+
+    <string name="error_empty_fields">Veuillez remplir tous les champs</string>
 
     <string name="login_img_description">Icone pour le login</string>
+
+    <!-- Strings pour l'activité Compute -->
+    <string name="title_imc">IMC</string>
+    <string name="btn_back_description">Retour</string>
+    <string name="btn_email_description">Envoyer par email</string>
+    <string name="btn_calendar_description">Ajouter au calendrier</string>
+    <string name="label_genre">Genre :</string>
+    <string name="label_homme">H</string>
+    <string name="label_femme">F</string>
+    <string name="label_birthdate">Date Naissance :</string>
+    <string name="hint_date_format">DD/MM/YYYY</string>
+    <string name="label_poids">Poids (kg) :</string>
+    <string name="label_taille">Taille :</string>
+    <string name="label_metre">Mètre</string>
+    <string name="label_cm">Centimètre</string>
+    <string name="label_affichage">Affichage</string>
+    <string name="label_resultat">Résultat :</string>
+    <string name="result_initial_text">Veuillez cliquer sur Calculer pour obtenir un résultat</string>
+    <string name="btn_calculer">Calculer</string>
+    <string name="btn_raz">RAZ</string>
 </resources>

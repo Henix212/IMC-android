@@ -14,17 +14,17 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16sp">
+        android:padding="16dp">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="10sp">
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,15 +43,15 @@
             android:gravity="center"
             android:orientation="vertical"
             android:background="@drawable/transparent_card"
-            android:padding="100sp"
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp">
+            android:padding="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
 
             <ImageView
-                android:layout_width="120sp"
-                android:layout_height="120sp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:src="@drawable/icon_account_circle"
-                android:layout_marginBottom="16sp"
+                android:layout_marginBottom="16dp"
                 android:contentDescription="@string/login_img_description"/>
 
             <!-- Champ Utilisateur -->
@@ -60,8 +60,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_corner"
                 android:orientation="horizontal"
-                android:paddingStart="16sp"
-                android:paddingEnd="16sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -78,9 +78,9 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:inputType="text"
-                    android:paddingTop="12sp"
-                    android:paddingBottom="12sp"
-                    android:paddingStart="8sp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingStart="8dp"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:autofillHints="username"
@@ -91,11 +91,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12sp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/rounded_corner"
                 android:orientation="horizontal"
-                android:paddingStart="16sp"
-                android:paddingEnd="16sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -112,9 +112,9 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:inputType="textPassword"
-                    android:paddingTop="12sp"
-                    android:paddingBottom="12sp"
-                    android:paddingStart="8sp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingStart="8dp"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:autofillHints="password"
@@ -125,14 +125,26 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
-                android:padding="12sp"
+                android:layout_marginTop="20dp"
+                android:padding="12dp"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
                 android:text="@string/label_login_btn"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:cornerRadius="24sp"/>
+                app:cornerRadius="24dp"/>
+
+            <TextView
+                android:id="@+id/tv_not_registered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/not_registered"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
