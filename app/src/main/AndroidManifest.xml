@@ -26,10 +26,6 @@
             android:name=".ComputeActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".CustomActivity"
-            android:exported="false" />
-
     </application>
 
 </manifest>

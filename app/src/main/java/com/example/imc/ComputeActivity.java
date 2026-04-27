@@ -2,11 +2,11 @@ package com.example.imc;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,11 +36,16 @@ public class ComputeActivity extends AppCompatActivity {
     private Button btnCalculer, btnRAZ;
 
     private double currentIMC = -1;
+    private SharedPreferences sharedPreferences;
+    private String currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compute);
+
+        sharedPreferences = getSharedPreferences("IMC_Prefs", MODE_PRIVATE);
+        currentUser = sharedPreferences.getString("CURRENT_USER", "Utilisateur");
 
         // Initialisation des vues
         btnBack = findViewById(R.id.btnBack);
@@ -57,6 +62,12 @@ public class ComputeActivity extends AppCompatActivity {
         tvResultText = findViewById(R.id.tvResultText);
         btnCalculer = findViewById(R.id.btnCalculer);
         btnRAZ = findViewById(R.id.btnRAZ);
+
+        // Charger l'ancien IMC s'il existe pour cet utilisateur
+        float lastIMC = sharedPreferences.getFloat("LAST_IMC_" + currentUser, -1.0f);
+        if (lastIMC != -1.0f) {
+            tvResultText.setText("Dernier IMC calculé pour " + currentUser + " : " + String.format(Locale.FRANCE, "%.2f", lastIMC));
+        }
 
         // Configuration du Spinner Genre
         String[] genres = {"Homme", "Femme"};
@@ -84,16 +95,12 @@ public class ComputeActivity extends AppCompatActivity {
             emailIntent.setData(Uri.parse("mailto:"));
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "IMC");
             emailIntent.putExtra(Intent.EXTRA_TEXT, "mon IMC est de " + String.format(Locale.FRANCE, "%.2f", currentIMC));
-            if (emailIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(emailIntent);
-            }
+            startActivity(emailIntent);
         });
 
-        // Bouton Calendrier
         btnCalendar.setOnClickListener(v -> showDatePicker(null));
         etBirthDate.setOnClickListener(v -> showDatePicker(etBirthDate));
 
-        // TextWatcher pour réinitialiser le texte du résultat si les champs changent
         TextWatcher fieldsWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -108,10 +115,8 @@ public class ComputeActivity extends AppCompatActivity {
         etTaille.addTextChangedListener(fieldsWatcher);
         etBirthDate.addTextChangedListener(fieldsWatcher);
 
-        // Bouton Calculer
         btnCalculer.setOnClickListener(v -> calculateIMC());
 
-        // Bouton RAZ
         btnRAZ.setOnClickListener(v -> showRAZDialog());
     }
 
@@ -150,12 +155,15 @@ public class ComputeActivity extends AppCompatActivity {
                 throw new Exception("Valeurs nulles ou négatives");
             }
 
-            // Conversion en mètres si nécessaire
             if (rbCm.isChecked()) {
                 taille = taille / 100;
             }
 
             currentIMC = poids / (taille * taille);
+            
+            // Sauvegarder le dernier IMC calculé pour cet utilisateur
+            sharedPreferences.edit().putFloat("LAST_IMC_" + currentUser, (float)currentIMC).apply();
+            
             displayResult(currentIMC);
 
         } catch (Exception e) {
@@ -167,23 +175,21 @@ public class ComputeActivity extends AppCompatActivity {
     private void displayResult(double imc) {
         String imcStr = String.format(Locale.FRANCE, "%.2f", imc);
         if (!cbAffichage.isChecked()) {
-            tvResultText.setText("Votre IMC est de " + imcStr);
+            tvResultText.setText(currentUser + ", votre IMC est de " + imcStr);
         } else {
             String genre = spinnerGenre.getSelectedItem().toString();
             String prefix = genre.equals("Homme") ? "Monsieur" : "Madame";
             
-            // Calcul simplifié de l'âge (juste pour l'exemple d'affichage demandé)
-            int age = 25; // TODO: Calculer le vrai âge à partir de etBirthDate
             String category = getIMCCategory(imc);
 
-            tvResultText.setText(String.format("%s, votre IMC est de %s.\nPour votre catégorie d'âge, vous êtes dans la catégorie %s", 
-                prefix, imcStr, category));
+            tvResultText.setText(String.format("%s %s, votre IMC est de %s.\nPour votre catégorie d'âge, vous êtes dans la catégorie %s", 
+                prefix, currentUser, imcStr, category));
         }
     }
 
     private String getIMCCategory(double imc) {
         if (imc < 18.5) return "Maigreur";
-        if (imc < 25) return "Normale";
+        if (imc < 25) return "Normal";
         if (imc < 30) return "Surpoids";
         return "Obésité";
     }

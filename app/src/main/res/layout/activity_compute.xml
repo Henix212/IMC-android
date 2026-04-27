@@ -222,7 +222,7 @@
                     android:layout_marginTop="8sp"
                     android:text="@string/result_initial_text"
                     android:textColor="@color/white"
-                    android:italic="true" />
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <LinearLayout

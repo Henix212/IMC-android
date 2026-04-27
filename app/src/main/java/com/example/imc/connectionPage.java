@@ -1,5 +1,7 @@
 package com.example.imc;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,12 +21,15 @@ public class connectionPage extends AppCompatActivity {
     private EditText etNom, etPassword;
     private Button btnAction;
     private TextView tvToggle;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_connection);
+
+        sharedPreferences = getSharedPreferences("IMC_Prefs", MODE_PRIVATE);
 
         View mainView = findViewById(R.id.main);
         if (mainView != null) {
@@ -74,14 +79,28 @@ public class connectionPage extends AppCompatActivity {
         if (etPassword != null) etPassword.setText("");
     }
 
-    //TODO : Ajouter fonction de connection et de registration
     private void performLogin(String username, String password) {
-        Toast.makeText(this, "Connexion de " + username + "...", Toast.LENGTH_SHORT).show();
-        clearFields();
+        String savedPassword = sharedPreferences.getString(username, null);
+        
+        if (savedPassword != null && savedPassword.equals(password)) {
+            sharedPreferences.edit().putString("CURRENT_USER", username).apply();
+            
+            Toast.makeText(this, "Connexion réussie !", Toast.LENGTH_SHORT).show();
+            
+            Intent intent = new Intent(this, ComputeActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void performRegister(String username, String password) {
-        Toast.makeText(this, "Création du compte pour " + username + "...", Toast.LENGTH_SHORT).show();
-        clearFields();
+        if (sharedPreferences.contains(username)) {
+            Toast.makeText(this, "Cet utilisateur existe déjà", Toast.LENGTH_SHORT).show();
+        } else {
+            sharedPreferences.edit().putString(username, password).apply();
+            Toast.makeText(this, "Compte créé ! Connectez-vous.", Toast.LENGTH_SHORT).show();
+            tvToggle.performClick();
+        }
     }
 }
